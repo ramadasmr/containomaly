@@ -1,4 +1,6 @@
-uvicorn
-fastapi
-pydantic-settings
-influxdb-client
+fastapi==0.121.0
+influxdb-client==1.49.0
+pydantic==2.12.4
+pydantic-settings==2.11.0
+python-dotenv==1.2.1
+uvicorn==0.38.0
