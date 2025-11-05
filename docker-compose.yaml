@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   influxdb:
-    image: influxdb:2.8
+    image: influxdb
     container_name: influxdb
     ports:
       - "8086:8086"
@@ -10,7 +10,7 @@ services:
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
       - DOCKER_INFLUXDB_INIT_PASSWORD=adminpass
       - DOCKER_INFLUXDB_INIT_ORG=my-org
-      - DOCKER_INFLUXDB_INIT_BUCKET=docker_anomaly
+      - DOCKER_INFLUXDB_INIT_BUCKET=containomaly
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-token
     volumes:
       - influxdb_data:/var/lib/influxdb2
