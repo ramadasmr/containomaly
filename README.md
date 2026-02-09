@@ -21,7 +21,5 @@ pip install -r requirements.txt
 - **ml/** → machine learning models
 
 ### To be implemented
-- Agent data collector
 - Server endpoint
-- TSDB integration
 - Anomaly detection
