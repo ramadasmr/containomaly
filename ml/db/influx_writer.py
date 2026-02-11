@@ -1,0 +1,36 @@
+from influxdb_client import InfluxDBClient, Point
+import os
+
+INFLUX_URL = os.getenv("INFLUX_URL")
+INFLUX_TOKEN = os.getenv("INFLUX_TOKEN")
+INFLUX_ORG = os.getenv("INFLUX_ORG")
+INFLUX_BUCKET = os.getenv("INFLUX_BUCKET")
+
+
+def write_anomalies(anomalies):
+    if not anomalies:
+        return
+
+    client = InfluxDBClient(
+        url=INFLUX_URL,
+        token=INFLUX_TOKEN,
+        org=INFLUX_ORG,
+    )
+
+    write_api = client.write_api()
+
+    points = []
+    for a in anomalies:
+        p = (
+            Point("container_anomalies")
+            .tag("container_id", a["container_id"])
+            .tag("container_name", a.get("container_name", "unknown"))
+            .tag("type", a["type"])
+            .tag("severity", a["severity"])
+            .field("description", a["description"])
+            .time(a["time"])
+        )
+        points.append(p)
+
+    write_api.write(bucket=INFLUX_BUCKET, record=points)
+    client.close()
