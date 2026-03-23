@@ -10,7 +10,7 @@ A Python-based anomaly detection system that monitors containers, collects runti
 ```bash
 git clone https://github.com/ramadasmr/containamoly.git
 cd containamoly
-python3 -m venv venv
+python3 -m venv venv --prompt containomaly
 source venv/bin/activate
 pip install -r requirements.txt
 ```
